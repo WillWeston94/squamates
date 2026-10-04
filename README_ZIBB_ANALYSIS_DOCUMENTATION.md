@@ -1305,6 +1305,11 @@ The primary coefficient summary is:
 ZIBB_PGLMM_Squamata_summary.csv
 ```
 
+https://github.com/WillWeston94/squamates/blob/main/ZIBB_PGLMM_Squamata/ZIBB_PGLMM_Squamata_summary.csv
+
+<img width="1313" height="171" alt="Screenshot 2026-10-03 at 8 37 28 PM" src="https://github.com/user-attachments/assets/a41ef5e7-b593-42b2-ad64-922cccbdc35d" />
+
+
 This contains information including:
 
 - response
@@ -1599,50 +1604,50 @@ Eight univariate models have successfully completed.
 
 ---
 
-# 60. Where the project may go next
+# 60. Where to next? 
+
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/109f0edd-943c-4349-a84d-723bea8c30f2" />
 
 Potential next steps include:
 
-1. Compare ZIBB with a non-zero-inflated beta-binomial model.
-
-2. Start with:
+1. Start with:
    ```text
    Neoplasia + longevity
    ```
 
-3. Repeat the comparison for:
+2. Repeat the comparison for:
    ```text
    Malignancy + longevity
    ```
 
-4. Examine whether:
+3. Examine whether:
    ```text
    zi ~ log_trials_s
    ```
    is actually useful.
 
-5. Compare that formulation with:
+4. Compare that formulation with:
    ```text
    zi ~ 1
    ```
 
-6. Examine additional posterior predictive diagnostics.
+5. Examine additional posterior predictive diagnostics.
 
-7. Use formal predictive comparison only when models contain identical species.
+6. Use formal predictive comparison only when models contain identical species.
 
-8. Consider an exploratory:
+7. Consider an exploratory:
    ```text
    longevity + gestation
    ```
    model with N = 18.
 
-9. Avoid making the N = 12 full model a primary inferential model unless additional data become available.
+8. Avoid making the N = 12 full model a primary inferential model unless additional data become available.
 
-10. Review whether additional life-history data can be obtained for currently incomplete species.
+9. Review whether additional life-history data can be obtained for currently incomplete species.
 
-11. Compare the final count-model results directly with the existing PGLS findings.
+10. Compare the final count-model results directly with the existing PGLS findings.
 
-12. Review manuscript wording after model selection is finalized.
+11. Review manuscript wording after model selection is finalized.
 
 ---
 
@@ -1650,13 +1655,6 @@ Potential next steps include:
 
 The following questions remain open:
 
-### Is zero inflation necessary?
-
-Not yet established.
-
-### Is beta-binomial overdispersion sufficient by itself?
-
-Not yet tested directly.
 
 ### Does sampling effort explain extra zeros?
 
@@ -1672,7 +1670,7 @@ It is positive, but weaker and more borderline.
 
 ### Is gestation robust?
 
-Not in the current univariate ZIBB analysis.
+Not in current (Oct 3rd 2026) univariate ZIBB analysis.
 
 ### Should very small multivariable models be fitted?
 
@@ -1680,66 +1678,114 @@ Possibly as sensitivity analyses, but not automatically as primary models.
 
 ---
 
+
 # 62. Current conclusions
 
-The current ZIBB-PGLMM pipeline is functioning and producing stable posterior sampling.
+The current ZIBB-PGLMM pipeline is functioning well and producing stable posterior sampling.
 
 The most consistent current biological finding is:
 
 > Longer-lived Squamata species tend to show greater neoplasia prevalence and, more weakly, greater malignancy prevalence.
 
-The currently tested univariate ZIBB models do not show similarly clear effects for:
+The currently tested univariate ZIBB models do **not** show similarly clear effects for:
 
 - gestation
 - adult body mass
 - litter size
 
-However, the zero-count posterior predictive checks suggest that the current ZIBB formulation may generate somewhat more zero-case species than are observed.
+The current models also converged well, with:
+
+- Rhat values near 1.00
+- 0 divergent transitions in the fitted models
+
+Posterior predictive checks suggest that some ZIBB models may generate somewhat more zero-case species than are observed in the actual data.
+
+This does **not** indicate that the ZIBB models failed or that zero inflation should automatically be removed.
+
+Instead, it suggests that the zero-inflation component should be examined more closely before the analysis is considered fully finalized.
 
 Therefore:
 
-> The current results are informative but should not yet be considered the final statistical analysis.
+> The current (Oct 3rd, 2026) ZIBB results are informative and biologically interpretable, but additional sensitivity and model-checking work may still improve the final analysis.
 
-The next important step is to determine whether explicit zero inflation improves the analysis relative to a phylogenetic beta-binomial model without zero inflation.
+The primary analysis framework will remain the **phylogenetic Zero-Inflated Beta-Binomial model**.
+
+Potential follow-up work includes:
+
+- examining whether `zi ~ log_trials_s` is the most appropriate zero-inflation structure
+- comparing it with a simpler `zi ~ 1` formulation
+- examining posterior predictive fit in greater detail
+- running selected lower-sample multivariable models as exploratory analyses
+- optionally fitting a non-zero-inflated beta-binomial model as a sensitivity check
+
+A plain beta-binomial model would therefore be used as a **robustness comparison**, not as a replacement for the primary ZIBB framework.
 
 ---
 
-# 63. Short summary ( We Gucci but not as Gucci as we can be ) 
+# 63. Short summary ( Gucci but not as Gucci as one could be )
 
-## Where we started
+## Where it started
 
-A prevalence-based PGLS analysis examining cancer prevalence and life-history traits in Squamata.
+The project began with prevalence-based PGLS analyses examining relationships between cancer prevalence and life-history traits across Squamata.
 
-## Where we are now
+Those analyses provided the original biological direction, particularly around traits such as longevity and gestation.
 
-A working Bayesian phylogenetic Zero-Inflated Beta-Binomial pipeline using:
+## Where the group is now
 
-- tumor counts
-- denominators
-- overdispersion
+The project now has a working Bayesian phylogenetic Zero-Inflated Beta-Binomial pipeline using:
+
+- tumor case counts
+- necropsy denominators
+- beta-binomial overdispersion
 - zero inflation
 - phylogenetic relatedness
 - standardized life-history predictors
+- posterior diagnostics
+- posterior predictive checks
 
-Eight univariate models have been successfully fitted.
+Eight univariate ZIBB-PGLMMs have been successfully fitted.
 
-Longevity currently shows the strongest and most consistent association with the cancer outcomes.
+The strongest and most consistent current signal is:
 
-## Where we might go
+> Maximum longevity is positively associated with neoplasia and, more weakly, malignancy.
 
-The next major analysis is a sensitivity comparison between:
+Gestation, adult body mass, and litter size do not currently show similarly clear effects in the univariate ZIBB models.
+
+The sampler itself is behaving well, with good convergence and no divergent transitions in the fitted models.
+
+## Where one could go?
+
+The next stage is not to replace the ZIBB framework, but to **refine and stress-test it because Trust but Verify**.
+
+Possible next analyses include:
+
+1. examining the current zero-inflation structure more closely
+
+2. comparing:
 
 ```text
-Zero-Inflated Beta-Binomial
+zi ~ log_trials_s
 ```
 
-and:
+with:
 
 ```text
-Beta-Binomial without zero inflation
+zi ~ 1
 ```
 
-before deciding which model should form the basis of the final biological interpretation and manuscript revisions.
+3. optionally fitting a standard phylogenetic beta-binomial model as a sensitivity analysis
+
+4. examining whether the main longevity result remains stable across reasonable model specifications
+
+5. selectively running the smaller multivariable models as exploratory analyses
+
+6. comparing the finalized ZIBB results with the original PGLS results
+
+7. using the finalized ZIBB interpretation to guide manuscript revisions
+
+The goal is to determine...
+
+> How robust are the biological conclusions within a ZIBB-centered analysis framework?
 
 ---
 
@@ -1747,7 +1793,11 @@ before deciding which model should form the basis of the final biological interp
 
 **Analysis status:** Ongoing
 
-**ZIBB pipeline:** Working
+**Primary modeling framework:** Phylo ZIBB GLMM
+
+**ZIBB pipeline:** Shi Works
+
+**Successfully fitted models:** 8 univariate models
 
 **MCMC convergence:** Good
 
@@ -1757,9 +1807,23 @@ before deciding which model should form the basis of the final biological interp
 
 **Strongest current outcome association:** Neoplasia + longevity
 
-**Main unresolved modeling question:** Whether explicit zero inflation is necessary
+**Malignancy + longevity:** Positive, but weaker than the neoplasia result
 
-**Multivariable analysis:** Limited by missing life-history data and small complete-case sample sizes
+**Gestation:** No clear effect in the current univariate ZIBB models
 
-**Manuscript interpretation:** Should remain provisional until sensitivity/model comparison work is complete
+**Adult body mass:** No clear effect in the current univariate ZIBB models
+
+**Litter size:** No clear effect in the current univariate ZIBB models
+
+**Zero-count posterior checks:** Some models predict somewhat more zero-case species than observed
+
+**Beta-binomial without zero inflation:** Optional sensitivity analysis, BUT not the primary framework
+
+**Multivariable analysis:** Currently limited by missing life-history data and small complete-case sample sizes
+
+**Skipped model fits:** 6 multivariable model instances were intentionally skipped because `N < 20`
+
+**The above 6 small-sample models:** Can still be run later as exploratory or sensitivity analyses if biologically justified
+
+**Manuscript interpretation:** Should remain provisional (but its close) until the ZIBB diagnostics, sensitivity checks, and selected follow-up analyses are complete
 ```
