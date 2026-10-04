@@ -1,0 +1,27 @@
+ Family: zero_inflated_beta_binomial 
+  Links: mu = logit; zi = logit 
+Formula: cases | trials(Trials) ~ mass_s + (1 | gr(Species, cov = A_model)) 
+         zi ~ log_trials_s
+   Data: df_model (Number of observations: 42) 
+  Draws: 4 chains, each with iter = 4000; warmup = 2000; thin = 1;
+         total post-warmup draws = 8000
+
+Multilevel Hyperparameters:
+~Species (Number of levels: 42) 
+              Estimate Est.Error l-95% CI u-95% CI  Rhat Bulk_ESS Tail_ESS
+sd(Intercept)    0.380     0.265    0.018    0.992 1.001     2636     2861
+
+Regression Coefficients:
+                Estimate Est.Error l-95% CI u-95% CI  Rhat Bulk_ESS Tail_ESS
+Intercept         -1.855     0.290   -2.442   -1.283 1.001     4652     4103
+zi_Intercept      -2.948     0.798   -4.699   -1.592 1.000     8846     5854
+mass_s             0.147     0.187   -0.236    0.503 1.002     7995     5283
+zi_log_trials_s    0.102     0.696   -1.356    1.407 1.000     7874     5437
+
+Further Distributional Parameters:
+    Estimate Est.Error l-95% CI u-95% CI  Rhat Bulk_ESS Tail_ESS
+phi    6.479     1.850    3.523   10.731 1.000     8554     6023
+
+Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+and Tail_ESS are effective sample size measures, and Rhat is the potential
+scale reduction factor on split chains (at convergence, Rhat = 1).
