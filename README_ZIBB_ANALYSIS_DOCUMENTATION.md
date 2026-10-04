@@ -1081,7 +1081,7 @@ Therefore:
 
 # 37. Recommended next sensitivity analysis
 
-The most useful next analysis is to compare:
+Useful next analysis could be to compare current ZIBB vs beta-binomial but given the amount of zeros and what Maley is asking for it can probably be forgone. Beta-Binomial was previously done for another comp-onc ACE project and we eventually stuck with ZIBB per Dr. Maleys guidance. However if it were to be done see the below:
 
 ## Model A — current ZIBB
 
@@ -1133,15 +1133,13 @@ The neoplasia-longevity model is currently the strongest test case because:
 - the zero-inflation component was modest
 - posterior predictive zero checks raised an interpretable model-fit question
 
-If the beta-binomial model produces similar longevity estimates while reproducing the observed zero frequency better, this would suggest that explicit zero inflation may not be necessary.
-
-If ZIBB clearly improves predictive performance, then retaining zero inflation would be more strongly justified.
+IF a beta-binomial model produces similar longevity estimates while reproducing the observed zero frequency better, this would suggest that explicit zero inflation may not be necessary but once again per guidance beta-binomial can probably be forgone.
 
 ---
 
 # 39. Model comparison caution
 
-Formal model comparison should only be performed when competing models use the **same observations**.
+Formal model comparison should ONLY be performed when competing models use the **same observations**.
 
 For example:
 
@@ -1150,17 +1148,17 @@ longevity-only model: N = 49
 gestation-only model: N = 20
 ```
 
-These models should not automatically be ranked against each other using LOO or another predictive criterion because they were fit to different datasets.
+These models should NOT automatically be ranked against each other using LOO or another predictive criterion because they were fit to different datasets.
 
 A valid comparison should use the same species in both models.
 
-This is especially important for future multivariable analysis.
+This is especially important for future multivariable analysis!!
 
 ---
 
 # 40. Multivariable modeling limitation
 
-The largest current limitation for multivariable modeling is missing life-history data.
+The largest current limitation (Oct 3rd 2026) for multivariable modeling is missing life-history data.
 
 Current complete-case sample sizes fall rapidly:
 
@@ -1182,13 +1180,13 @@ Therefore, an apparent change in a coefficient could result from either:
 1. controlling for another biological variable, or
 2. analyzing a different subset of species
 
-This should be kept in mind when future multivariable models are considered.
+This should be kept in mind when future multivariable models are considered! 
 
 ---
 
 # 41. Should the N = 18 model eventually be run?
 
-Possibly.
+Maybe, Possibly, Possibly so
 
 The:
 
@@ -1202,9 +1200,9 @@ model has:
 N = 18
 ```
 
-This may eventually be worth fitting as an **exploratory or sensitivity analysis**.
+This MAY eventually be worth fitting as an **exploratory or sensitivity analysis**.
 
-However, it should not automatically be treated as the primary model because:
+However, it should NOT AUTOMATICALLY be treated as the primary model because:
 
 - the sample size is small
 - the model is relatively complex
@@ -1213,7 +1211,7 @@ However, it should not automatically be treated as the primary model because:
 - it contains beta-binomial dispersion
 - it contains a zero-inflation process
 
-The current conservative choice is to keep it excluded from the main analysis until the simpler model structure is better understood.
+The current conservative choice is to keep it excluded from the main analysis UNTIL the simpler model structure is better understood.
 
 ---
 
@@ -1230,9 +1228,12 @@ Body mass: not clearly supported
 Litter size: not clearly supported
 ```
 
-Therefore, manuscript language regarding gestation should eventually be reviewed if the ZIBB or beta-binomial analysis becomes part of the final statistical framework.
+Therefore, manuscript language regarding gestation should be revisited once the ZIBB analysis is finalized. 
+The current ZIBB results DO NOT clearly support a gestation effect, although the gestation models 
+are based on a relatively small number of species and additional sensitivity analyses may still be informative.
 
-The manuscript should not yet be rewritten solely on the basis of the current preliminary ZIBB results.
+The manuscript should NOT be revised until the remaining ZIBB diagnostics and planned sensitivity checks are completed. Regular Beta-Bi may be used as a sensitivity check if wanted.
+
 
 ---
 
