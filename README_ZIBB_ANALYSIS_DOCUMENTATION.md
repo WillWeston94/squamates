@@ -1553,7 +1553,7 @@ Inspect zero-count behavior
                 ↓
 Question whether explicit zero inflation is necessary
                 ↓
-Compare ZIBB against beta-binomial
+Compare ZIBB against beta-binomial (Probably not needed according to what Dr. Maley wants but still useful to learn if wanted!)
                 ↓
 Reassess multivariable modeling
                 ↓
