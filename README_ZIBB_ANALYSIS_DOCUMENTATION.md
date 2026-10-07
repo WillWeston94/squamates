@@ -1891,3 +1891,13 @@ The goal is to determine...
 **The above 6 small-sample models:** Can still be run later as exploratory or sensitivity analyses if biologically justified
 
 **Manuscript interpretation:** Should remain provisional (but its close) until the ZIBB diagnostics, sensitivity checks, and selected follow-up analyses are complete
+
+And as always,
+
+Trust, but verify.
+
+(•_•)
+
+( •_•)>⌐■-■
+
+(⌐■_■)
