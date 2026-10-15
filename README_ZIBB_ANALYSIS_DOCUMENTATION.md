@@ -89,6 +89,7 @@ It is intended to document:
 63. [Short summary — Gucci but not as Gucci as one could be](#63-short-summary--gucci-but-not-as-gucci-as-one-could-be)
 64. [Current status](#64-current-status)
 65. [Matched Longevity + Gestation Sensitivity Analysis](#65-matched-longevity--gestation-sensitivity-analysis)
+66. [Zero-inflation specification sensitivity](#66-zero-inflation-specification-sensitivity)
 
 # 1. Project background
 
@@ -2097,3 +2098,43 @@ Therefore, in the matched N = 18 sensitivity analyses, longevity remained positi
 These results suggest that the weakening of longevity support in the smaller multivariable analyses appears more consistent with reduced information and sample composition than with gestation strongly accounting for the longevity association.
 
 These N = 18 models should be treated as exploratory sensitivity analyses rather than replacements for the larger univariate ZIBB models.
+
+## 66. Zero-inflation specification sensitivity
+
+To determine whether the primary longevity results depended on modeling
+sampling effort within the zero-inflation component, the primary N = 49
+longevity models were refitted using:
+
+zi ~ 1
+
+instead of:
+
+zi ~ log_trials_s
+
+All other model components were retained.
+
+The estimated longevity effects were highly similar to the primary models.
+
+| Outcome | ZI structure | Median beta | Lower 95% CrI |
+|---|---|---:|---:|
+| Neoplasia | zi ~ log_trials_s | 0.423 | 0.058 |
+| Neoplasia | zi ~ 1 | 0.424 | 0.058 |
+| Malignancy | zi ~ log_trials_s | 0.367 | 0.003 |
+| Malignancy | zi ~ 1 | 0.378 | 0.009 |
+
+The 95% credible interval remained above zero for both outcomes under the
+intercept-only zero-inflation model.
+
+Therefore, the positive longevity association appears robust to whether
+sampling effort is included as a predictor of the excess-zero process.
+
+Zero-count posterior predictive checks continued to show that the fitted
+models tend to generate somewhat more zero-case species than are observed.
+Thus, simplifying the zero-inflation structure did not fully resolve the
+zero-count calibration discrepancy.
+
+Overall, the sensitivity analysis suggests that the main longevity result is not being driven by the specific choice of `zi ~ log_trials_s`.
+
+<img width="2100" height="1500" alt="zero_check_Neoplasia_longevity_only_ZIintercept" src="https://github.com/user-attachments/assets/16458e85-6339-4f9d-b44d-5b0f5ec6e276" />
+
+<img width="2100" height="1500" alt="zero_check_Malignancy_longevity_only_ZIintercept" src="https://github.com/user-attachments/assets/48a6f734-cb19-4eb6-8671-476ea89b7b61" />
