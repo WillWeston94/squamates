@@ -88,6 +88,8 @@ It is intended to document:
 62. [Current conclusions](#62-current-conclusions)
 63. [Short summary — Gucci but not as Gucci as one could be](#63-short-summary--gucci-but-not-as-gucci-as-one-could-be)
 64. [Current status](#64-current-status)
+65. [Matched Longevity + Gestation Sensitivity Analysis](#65-matched-longevity--gestation-sensitivity-analysis)
+
 # 1. Project background
 
 The Squamata project examines cancer prevalence across lizards and snakes in relation to life-history traits.
@@ -1901,3 +1903,197 @@ Trust, but verify.
 ( •_•)>⌐■-■
 
 (⌐■_■)
+
+
+## 65. Oct 15, 2026 - Matched Longevity + Gestation Sensitivity Analysis
+
+A follow-up sensitivity analysis was run to separate two possible explanations for the weaker longevity signal in the smaller multivariable dataset:
+
+1. Loss of information caused by reducing the dataset from the larger longevity sample to species with complete gestation data.
+2. A genuine change in the longevity effect after gestation is included in the model.
+
+The new script is:
+
+`7. ZIBB_PGLMM_Squamata_LongevityGestation.R`
+
+This analysis intentionally restricts all models to the same species with complete longevity and gestation information.
+
+The minimum-species safeguard was lowered from 20 to 18 for this exploratory sensitivity analysis.
+
+Three model structures were run for both Neoplasia and Malignancy:
+
+- longevity only
+- gestation only
+- longevity + gestation
+
+This produced 6 total ZIBB phylogenetic GLMM fits.
+
+All models used the same 18 species within each outcome.
+
+Species identity was explicitly checked after fitting and confirmed to be identical across the three matched models for both Neoplasia and Malignancy.
+
+### Matched-subset model summary
+
+Six ZIBB models were fitted:
+```
+- 3 model structures for Neoplasia
+- 3 model structures for Malignancy
+```
+The combined summary CSV contains 8 rows because each row represents a
+predictor coefficient rather than a fitted model.
+
+The longevity + gestation models each contribute two rows:
+one for the longevity coefficient and one for the gestation coefficient.
+
+Therefore:
+```
+- 2 outcomes
+- 6 fitted models
+- 8 predictor-effect rows
+```
+| Outcome | Model | Predictor | Median β | 95% CrI | Median OR | P(β > 0) |
+|---|---|---:|---:|---:|---:|---:|
+| Neoplasia | Longevity only | Longevity | 0.648 | -0.205 to 1.542 | 1.91 | 0.933 |
+| Neoplasia | Gestation only | Gestation | 0.248 | -0.304 to 0.846 | 1.28 | 0.813 |
+| Neoplasia | Longevity + gestation | Longevity | 0.606 | -0.401 to 1.675 | 1.83 | 0.881 |
+| Neoplasia | Longevity + gestation | Gestation | 0.062 | -0.579 to 0.720 | 1.06 | 0.572 |
+| Malignancy | Longevity only | Longevity | 0.574 | -0.294 to 1.518 | 1.77 | 0.900 |
+| Malignancy | Gestation only | Gestation | 0.176 | -0.402 to 0.788 | 1.19 | 0.729 |
+| Malignancy | Longevity + gestation | Longevity | 0.584 | -0.448 to 1.640 | 1.79 | 0.864 |
+| Malignancy | Longevity + gestation | Gestation | -0.013 | -0.673 to 0.676 | 0.99 | 0.484 |
+
+CSV and Original Model/Run Screenshot below:
+
+<img width="1301" height="145" alt="image" src="https://github.com/user-attachments/assets/04ba3b9d-7d59-4d41-98b6-a188dd9d0da6" />
+
+<img width="689" height="364" alt="Screenshot 2026-10-15 at 3 20 19 AM" src="https://github.com/user-attachments/assets/f9999d26-f381-4abf-bc81-5749868cb616" />
+
+### Neoplasia matched subset
+
+All three Neoplasia models used:
+
+- N = 18 species
+- 1 zero-case species
+- zero fraction = 5.6%
+- median records per species = 29.5
+
+Results:
+
+```
+- Longevity only:
+  - median beta = 0.648
+  - lower 95% CrI = -0.205
+  - posterior remains centered positively, but the 95% credible interval crosses zero
+```
+
+```
+- Gestation only:
+  - median beta = 0.248
+  - lower 95% CrI = -0.304
+  - gestation remains uncertain
+```
+
+```
+- Longevity + gestation:
+  - longevity median beta = 0.606
+  - gestation median beta = 0.062
+  - both credible intervals cross zero
+```
+
+The important pattern is that the longevity estimate remained positively centered after gestation was added.
+
+The longevity median changed only modestly from approximately 0.648 in the matched longevity-only model to approximately 0.606 in the joint longevity + gestation model.
+
+This suggests that gestation is not strongly "explaining away" the longevity association.
+
+Instead, the weaker posterior support appears to be associated largely with the substantial reduction in available species from the original longevity dataset to the matched N = 18 subset.
+
+### Malignancy matched subset
+
+All three Malignancy models used:
+
+- N = 18 species
+- 2 zero-case species
+- zero fraction = 11.1%
+- median records per species = 29.5
+
+Results:
+
+```
+- Longevity only:
+  - median beta = 0.574
+  - lower 95% CrI = -0.294
+  - posterior remains centered positively, but the credible interval crosses zero
+```
+
+```
+- Gestation only:
+  - median beta = 0.176
+  - lower 95% CrI = -0.402
+  - gestation remains uncertain
+```
+
+```
+- Longevity + gestation:
+  - longevity median beta = 0.584
+  - gestation median beta = -0.013
+```
+
+Longevity still remained positively centered after gestation entered the model.
+
+Gestation moved very close to zero in the joint model.
+
+Therefore, there is currently little evidence that gestation accounts for the longevity pattern in malignancy.
+
+### Computational diagnostics
+
+All six matched-subset models sampled cleanly.
+
+Maximum Rhat values were approximately 1.001-1.002.
+
+All six models had:
+
+`Divergences = 0`
+
+This indicates good computational convergence and no major Stan/NUTS sampling warnings.
+
+
+### Zero-inflation note
+
+The sampling effort coefficient in the zero-inflation component remained HIGHLY uncertain across these matched models.
+
+For example, in the Neoplasia longevity-only matched model:
+
+```
+- median zi_log_trials_s = approximately -0.073
+- 95% CrI = approximately -1.536 to 1.253
+```
+
+The other matched models showed similarly broad intervals crossing zero.
+
+In addition, the matched datasets contain relatively few zero-case species:
+
+```
+- Neoplasia: 1 / 18
+- Malignancy: 2 / 18
+```
+
+Therefore, the zero-inflation component is being estimated from relatively little zero-count information in these exploratory N = 18 models.
+
+### Interpretation
+
+The matched-subset analysis helps distinguish reduced sample information from predictor adjustment.
+
+The original longevity models used substantially more species, especially the N = 49 longevity analyses.
+
+When longevity is restricted to the 18 species that also have gestation data, the posterior median remains positive, but uncertainty increases enough for the 95% credible interval to cross zero.
+
+When gestation is then added to the same 18-species dataset, the longevity estimate remains positively centered and changes relatively little.
+
+Therefore, in the matched N = 18 sensitivity analyses, longevity remained positively centered for both neoplasia and malignancy, including after gestation was added to the model. However, all 95% credible intervals crossed zero, reflecting substantially greater uncertainty in the reduced dataset. The longevity coefficient changed little after adding gestation, whereas gestation was weakly supported and approached zero in the joint models.
+
+## Main takeaway as of Oct 15, 2026
+
+These results suggest that the weakening of longevity support in the smaller multivariable analyses appears more consistent with reduced information and sample composition than with gestation strongly accounting for the longevity association.
+
+These N = 18 models should be treated as exploratory sensitivity analyses rather than replacements for the larger univariate ZIBB models.
