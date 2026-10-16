@@ -90,6 +90,7 @@ It is intended to document:
 64. [Current status](#64-current-status)
 65. [Matched Longevity + Gestation Sensitivity Analysis](#65-matched-longevity--gestation-sensitivity-analysis)
 66. [Zero-inflation specification sensitivity](#66-zero-inflation-specification-sensitivity)
+67. [Interpretation](#67-interpretation)
 
 # 1. Project background
 
@@ -2138,3 +2139,18 @@ Overall, the sensitivity analysis suggests that the main longevity result is not
 <img width="2100" height="1500" alt="zero_check_Neoplasia_longevity_only_ZIintercept" src="https://github.com/user-attachments/assets/16458e85-6339-4f9d-b44d-5b0f5ec6e276" />
 
 <img width="2100" height="1500" alt="zero_check_Malignancy_longevity_only_ZIintercept" src="https://github.com/user-attachments/assets/48a6f734-cb19-4eb6-8671-476ea89b7b61" />
+
+
+## 67. Interpretation and Guidance - Oct 16,2026
+
+The present analysis identified maximum longevity as the most consistently supported life-history correlate of neoplasia and malignancy across Squamata. Using phylo ZIBB models that incorporated tumor counts, sampling effort, overdispersion, and shared evolutionary history, longer lived species showed higher estimated odds of both neoplasia and malignancy. Support was strongest for neoplasia, whereas the malignancy association was positive but comparatively weaker.
+
+This pattern differs from previous mammalian comparative analyses in which lifespan was not associated with cancer prevalence, suggesting that the relationship between longevity and cancer risk may vary across vertebrate clades. Life history theory predicts that longevity should influence the selective environment surrounding somatic maintenance and cancer suppression. However, the present data does not directly identify the biological mechanisms underlying the observed association. Greater cumulative exposure time, differences in age structure, diagnostic opportunity, or other correlated life history traits could also contribute.
+
+In contrast to longevity, gestation length, adult body mass, and litter size did NOT show clearly supported associations with neoplasia or malignancy in the current ZIBB models. The absence of clear gestation effects is particularly important given previous hypotheses linking reproductive strategy, somatic maintenance, and cancer vulnerability. In a matched species sensitivity analysis, restricting the longevity model to the 18 species (see section #65) with complete gestation data increased posterior uncertainty, but the longevity estimate remained positively centered. Adding gestation to the same dataset resulted in relatively little change in the longevity coefficient, while the gestation effect remained weak. These results are more consistent with reduced information and sample composition rather than with gestation strongly accounting for the longevity association.
+
+The longevity result was also robust to alternative specification of the zero-inflation component. Models assuming a constant excess zero probability produced longevity estimates nearly identical to those obtained when zero inflation was modeled as a function of sampling effort. Thus, the primary longevity association does not appear to depend strongly on the particular zero inflation specification. Posterior predictive checks nevertheless indicated that the fitted models tended to generate somewhat more zero-case species than were observed, suggesting some remaining mismatch in the zero-count distribution. See PNGs and plots in appropriate dropdown directories in main. 
+
+Life history theory provides several possible mechanisms through which longevity and reproductive strategy could influence the evolution of cancer defenses, including variation in somatic maintenance, DNA repair, immune surveillance, and tumor suppression. These mechanisms remain hypotheses in the context of the present study because they were NOT measured directly. Future work incorporating additional species, more complete life history data, age specific cancer estimates, and direct measures of cancer defense mechanisms would be needed to determine why longevity is associated with cancer prevalence in Squamata.
+
+Overall, the current results support maximum longevity as the most robust life history correlate of cancer occurrence identified in this particular Squamata dataset. They do NOT provide similarly clear support for gestation, body mass, or litter size, and they should NOT be interpreted as evidence that longevity itself causes cancer. Correlation does not mean Causation! Instead, the findings identify longevity as a useful comparative axis along which the evolution of cancer vulnerability in Squamata could be investigated further.
