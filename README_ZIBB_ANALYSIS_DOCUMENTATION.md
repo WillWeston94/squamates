@@ -15,8 +15,11 @@ It is intended to document:
 - limitations
 - unresolved questions
 - reasonable next steps
+- Discussion and guidance at the end - see section 67.
 
 ### Like I stated above, this is just a working record for needed documentation. Interpretation to come.
+
+### Oct 16, 2026 - Discussion and guidance has been added for manuscript interpretation.
 
 ---
 
